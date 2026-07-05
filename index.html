@@ -65,6 +65,18 @@
                 type="text"
                 x-model="option.value"
               />
+              <!-- Sub Option Visuals -->
+              <input 
+                x-show="option.subOptionEnabled != null & option.enabled"
+                type="checkbox" 
+                x-model="option.subOptionEnabled"
+                style="margin-left: 30px; margin-top: 15px;"
+              />
+              <span
+                x-show="option.subDescription != null & option.enabled"
+                x-text="option.subDescription"
+              >
+              </span>
             </label>
           </template>
         </div>
@@ -137,6 +149,9 @@
                 "Optimize the compiled binary for size instead of speed.",
               enabled: false,
               default: false,
+              subOptionEnabled: false,
+              subDescription:
+                "Extra: Further reduces size (Only for Godot 4.5+)",
               notModule: true,
             },
             // TODO: Uncomment when Godot 4.3 is released.
@@ -581,7 +596,7 @@
               } else if (option.enabled !== option.default) {
                 if (option.notModule != undefined) {
                   if (option.id === "optimize") {
-                    generated += `${option.id} = "${option.enabled ? "size" : "speed"}"\n`;
+                    generated += `${option.id} = "${option.enabled ? (option.subOptionEnabled ? "size_extra" : "size") : "speed"}"\n`;
                   } else if (option.id === "precision") {
                     generated += `${option.id} = "${option.enabled ? "double" : "single"}"\n`;
                   } else {
