@@ -217,7 +217,7 @@
               description:
                 "Required to use Forward+ and Mobile rendering methods with Direct3D 12 (only effective when targeting Windows). If enabled, run `misc/scripts/install_d3d12_sdk_windows.py` in the Godot repository to set up dependencies before compiling.",
               enabled: false,
-              default: false,
+              default: true,
               notModule: true,
             },
             // "astcenc" isn't included as it's editor-only.
@@ -400,7 +400,7 @@
               enabled: true,
               default: true,
             },
-            // "navigation" module is replaced with 2 seprate modules, "navigation_2d" and "navigation_3d" in Godot 4.5
+            // "navigation" module is replaced with 2 seprate modules, "navigation_2d" and "navigation_3d" in Godot 4.5.
             {
               id: "navigation_2d",
               name: "Navigation 2D",
